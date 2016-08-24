@@ -1,3 +1,5 @@
+//go:generate  /home/juno/neonworkspace/gowork/bin/statik -src=./public
+
 package main // import "github.com/remotejob/godocker"
 
 import (
@@ -16,6 +18,6 @@ func main() {
 		log.Fatalf(err.Error())
 	}
 
-	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(statikFS)))
+	http.Handle("/", http.FileServer(statikFS))
 	http.ListenAndServe(":8080", nil)
 }

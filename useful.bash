@@ -1,7 +1,16 @@
 
 
+docker run -d -p 8080:8080 --name go_tutorial gcr.io/$PROJECT_ID/godocker:v8
+
+
+
 
 docker run --rm -v "$(pwd):/src" -v /var/run/docker.sock:/var/run/docker.sock centurylink/golang-builder gcr.io/jntlserv0/godocker:v4
+
+
+
+
+
 
 gcloud docker push gcr.io/$PROJECT_ID/godocker:v4
 
