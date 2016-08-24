@@ -1,11 +1,11 @@
-package main // import "github.com/remotejob/hello/godocker"
+package main // import "github.com/remotejob/godocker"
 
 import (
 	"log"
 	"net/http"
 
 	"github.com/rakyll/statik/fs"
-	_ "/home/juno/neonworkspace/gowork/src/github.com/remotejob/godocker/statik"
+	_ "github.com/remotejob/godocker/statik"
 )
 
 // Before buildling, run go generate.
