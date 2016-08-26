@@ -18,6 +18,11 @@ func main() {
 		log.Fatalf(err.Error())
 	}
 
+	// fs := http.FileServer(http.Dir("/home/juno/neonworkspace/gowork/src/github.com/remotejob/godocker/assets"))
+	fs := http.FileServer(http.Dir("assets"))
+
+	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+	// http.Handle("/assets", http.FileServer(http.Dir("/home/juno/neonworkspace/gowork/src/github.com/remotejob/godocker/assets")))
 	http.Handle("/", http.FileServer(statikFS))
 	http.ListenAndServe(":8080", nil)
 }

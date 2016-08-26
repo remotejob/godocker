@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: godocker
+spec:
+      containers:
+      - name: godocker
+        image: gcr.io/jntlserv0/godocker:v10
+        ports:
+        - containerPort: 8080
+
+        volumeMounts:
+        - mountPath: /test-hostpath
+          name: test-volume
+      volumes:
+      - name: test-volume
+        gcePersistentDisk:
+          pdName: my-data-disk
+          fsType: ext4  	
