@@ -1,5 +1,5 @@
 FROM scratch
-EXPOSE 8080
+EXPOSE 80
 
 COPY godocker /
 COPY assets/ /assets/
