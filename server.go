@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"gopkg.in/mgo.v2"
 
@@ -21,11 +22,25 @@ type Employees struct {
 
 func testhandler(w http.ResponseWriter, r *http.Request) {
 
-	session, err := mgo.Dial("mongo")
-	if err != nil {
-		panic(err)
+	// session, err := mgo.Dial("mymongo")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer session.Close()
+
+	mongoDBDialInfo := &mgo.DialInfo{
+		Addrs:     []string{"192.158.31.34"},
+		Timeout:   60 * time.Second,
+		Database:  "admin",
+		Username:  "admin",
+		Password:  "admin1Rel",
+		Mechanism: "SCRAM-SHA-1",
 	}
+
+	session, err := mgo.DialWithInfo(mongoDBDialInfo)
+
 	defer session.Close()
+
 	session.SetMode(mgo.Monotonic, true)
 
 	c := session.DB("node-mongo-employee").C("employees")
